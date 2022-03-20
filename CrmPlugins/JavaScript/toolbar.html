@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .openBtn {
+            display: flex;
+            justify-content: left;
+        }
+
+        .openButton {
+            border: none;
+            border-radius: 5px;
+            background-color: #1c87c9;
+            color: white;
+            padding: 14px 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .loginPopup {
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+
+        .formPopup {
+            display: none;
+            position: fixed;
+            left: 45%;
+            top: 5%;
+            transform: translate(-50%, 5%);
+            border: 3px solid #999999;
+            z-index: 9;
+        }
+
+        .formContainer {
+            max-width: 300px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+            .formContainer input[type=text],
+            .formContainer input[type=password] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 20px 0;
+                border: none;
+                background: #eee;
+            }
+
+                .formContainer input[type=text]:focus,
+                .formContainer input[type=password]:focus {
+                    background-color: #ddd;
+                    outline: none;
+                }
+
+            .formContainer .btn {
+                padding: 12px 20px;
+                border: none;
+                background-color: #8ebf42;
+                color: #fff;
+                cursor: pointer;
+                width: 100%;
+                margin-bottom: 15px;
+                opacity: 0.8;
+            }
+
+            .formContainer .cancel {
+                background-color: #cc0000;
+            }
+
+            .formContainer .btn:hover,
+            .openButton:hover {
+                opacity: 1;
+            }
+    </style>
+
+    <script>
+
+        function openForm() {
+            document.getElementById("popupForm").style.display = "block";
+        }
+        function closeForm() {
+            document.getElementById("popupForm").style.display = "none";
+        }
+
+        function reportClick(clicked_id) {
+
+            var pickupReport = window.parent.Xrm.Page.getAttribute("cr59f_pickupreport").getValue();
+            var returnReport = window.parent.Xrm.Page.getAttribute("cr59f_returnreport").getValue();
+            var car = window.parent.Xrm.Page.getAttribute("cr59f_car").getValue();
+
+            if (car == null) {
+                alert("Pleace, choose a car");
+                return;
+            }
+
+            if (pickupReport != null && clicked_id == "cPickup")
+                return;
+
+            if (returnReport != null && clicked_id == "cReturn")
+                return;
+
+            openForm();
+
+            document.getElementById("done").onclick = function () {
+
+                var damages = document.getElementById("damages").checked;
+                var damageDescription = document.getElementById("dDescription").value;
+
+                if (damages == true && damageDescription == "") {
+                    alert("Pleace, enter damage description");
+                    return;
+                }
+
+                var car = window.parent.Xrm.Page.getAttribute("cr59f_car").getValue();
+                var date = new Date(Date.now());
+
+                var entityLogicalName = "cr59f_cartransferreport";
+                var carID = car[0].id;
+
+                var requestData = {};
+                requestData["cr59f_car@odata.bind"] = "/cr59f_cars(" + carID.replace(/\{|\}/g, '') + ")";
+                requestData.cr59f_type = (clicked_id == cPickup ? 257700000 : 257700001);
+                requestData.cr59f_date = date.toISOString();
+                requestData.cr59f_damages = damages;
+                requestData.cr59f_damagedescription = damageDescription;
+
+                var reportID = "";
+
+                window.parent.Xrm.WebApi.createRecord(entityLogicalName, requestData).then(
+                    function success(result) {
+                        reportID = result.id;
+
+                        window.parent.Xrm.WebApi.retrieveRecord("cr59f_cartransferreport", reportID, "?$select=cr59f_name").then(
+                            function success(result) {
+                                var resVal = [];
+                                resVal[0] = {};
+                                resVal[0].entityType = "cr59f_cartransferreport";
+                                resVal[0].id = result.cr59f_cartransferreportid;
+                                resVal[0].name = result.cr59f_name;
+
+                                if (clicked_id == "cPickup")
+                                    window.parent.Xrm.Page.getAttribute("cr59f_pickupreport").setValue(resVal);
+                                else
+                                    window.parent.Xrm.Page.getAttribute("cr59f_returnreport").setValue(resVal);
+
+                                closeForm();
+
+                            },
+                            function (error) {
+                                console.log(error.message);
+                            }
+                        );
+                    },
+                    function (error) {
+                        console.log(error);
+                    }
+                );
+            };
+        }
+
+    </script>
+</head>
+<body>
+    <div class="openBtn">
+        <button class="openButton" id="cPickup" onclick="reportClick(this.id)"><strong>Create pickup report</strong></button>
+        <button class="openButton" id="cReturn" onclick="reportClick(this.id)"><strong>Create return report</strong></button>
+    </div>
+    <div class="loginPopup">
+        <div class="formPopup" id="popupForm">
+            <form class="formContainer">
+                <label for="email">
+                    <strong>Damages</strong>
+                </label>
+                <input type="checkbox" id="damages" name="damages"><br>
+                <label for="psw">
+                    <strong>Damage description</strong>
+                </label>
+                <textarea cols="30" rows="5" id="dDescription" placeholder="Description" name="psw"></textarea>
+                <input type="button" value="Create" class="btn" id="done">
+                <input type="button" value="Close" class="btn cancel" onclick="closeForm()">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Microsoft.Xrm.Tooling.CrmConnectControl Error: 2 : Error Message: Exception logged by the CRM Connector control:
+Source	: Not Provided
+Method	: Not Provided
+Date	: 15.02.2022
+Time	: 22:48:23
+Error	: You don't have permission to access any of the organizations in the Microsoft Common Data Service region that you specified. If you're not sure which region your organization resides in, choose "Don't know" for the CDS region and try again. Otherwise check with your CDS administrator.
+Имя параметра: EMEA
+Stack Trace	: Not Provided
+======================================================================================================================
+
+Microsoft.Xrm.Tooling.CrmConnectControl Error: 2 : No Orgs Found, Searched Online. Region Setting = EMEA

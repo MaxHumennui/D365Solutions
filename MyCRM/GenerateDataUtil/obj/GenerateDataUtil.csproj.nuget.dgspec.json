@@ -1,0 +1,137 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Vi\\Desktop\\MyCRM\\GenerateDataUtil\\GenerateDataUtil.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Vi\\Desktop\\MyCRM\\GenerateDataUtil\\GenerateDataUtil.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Vi\\Desktop\\MyCRM\\GenerateDataUtil\\GenerateDataUtil.csproj",
+        "projectName": "GenerateDataUtil",
+        "projectPath": "C:\\Users\\Vi\\Desktop\\MyCRM\\GenerateDataUtil\\GenerateDataUtil.csproj",
+        "packagesPath": "C:\\Users\\Vi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Vi\\Desktop\\MyCRM\\GenerateDataUtil\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Vi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\Vi\\Desktop\\MyCRM\\MyCustomWorkflows\\MyCustomWorkflows.csproj": {
+                "projectPath": "C:\\Users\\Vi\\Desktop\\MyCRM\\MyCustomWorkflows\\MyCustomWorkflows.csproj"
+              },
+              "C:\\Users\\Vi\\Desktop\\MyCRM\\MyPlugins\\MyPlugins.csproj": {
+                "projectPath": "C:\\Users\\Vi\\Desktop\\MyCRM\\MyPlugins\\MyPlugins.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.CrmSdk.CoreTools": {
+              "target": "Package",
+              "version": "[9.1.0.92, )"
+            },
+            "Microsoft.CrmSdk.XrmTooling.CoreAssembly": {
+              "target": "Package",
+              "version": "[9.1.0.92, )"
+            },
+            "Microsoft.IdentityModel.Clients.ActiveDirectory": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Diagnostics.EventLog": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            },
+            "System.Runtime.Caching": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Runtime.Serialization.Primitives": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.ServiceModel.Primitives": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            },
+            "runtime.native.System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.13, 3.1.13]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Vi\\Desktop\\MyCRM\\MyCustomWorkflows\\MyCustomWorkflows.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Vi\\Desktop\\MyCRM\\MyCustomWorkflows\\MyCustomWorkflows.csproj",
+        "projectName": "MyCustomWorkflows",
+        "projectPath": "C:\\Users\\Vi\\Desktop\\MyCRM\\MyCustomWorkflows\\MyCustomWorkflows.csproj"
+      },
+      "frameworks": {
+        "net452": {}
+      }
+    },
+    "C:\\Users\\Vi\\Desktop\\MyCRM\\MyPlugins\\MyPlugins.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Vi\\Desktop\\MyCRM\\MyPlugins\\MyPlugins.csproj",
+        "projectName": "MyPlugins",
+        "projectPath": "C:\\Users\\Vi\\Desktop\\MyCRM\\MyPlugins\\MyPlugins.csproj"
+      },
+      "frameworks": {
+        "net452": {}
+      }
+    }
+  }
+}
